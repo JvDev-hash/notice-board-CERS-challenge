@@ -1,0 +1,170 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Notice Board</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onOpenModal(null, 'add')" href="#">Add new Notice</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-3 mb-4">
+<div class="col-lg-9 mt-4 mt-lg-0" id="mainCointainer">
+    <div class="row">
+      <div *ngFor="let notice of notices | paginate: {itemsPerPage: contador, currentPage: pag}" class="col-md-12">
+        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+          <table class="table manage-candidates-top mb-0">
+            <thead>
+              <tr>
+                <th>Notice Title</th>
+                <!--<th class="text-center">Status</th>-->
+                <th class="action text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="candidates-list">
+                <td class="title">
+                  <div class="candidate-list-details">
+                    <div class="candidate-list-info">
+                      <div class="candidate-list-title">
+                        <h5 class="mb-0"><a (click)="onOpenModal(notice, 'details')" href="#">{{notice?.title}}</a></h5>
+                      </div>
+                      <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                          <li><i class="fas fa-info pr-1"></i>Status: </li>
+                          <li>{{notice?.viewFlag}}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                    <li><a (click)="onOpenModal(notice, 'edit')" href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+                    <li><a (click)="onOpenModal(notice, 'delete')" href="#" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-right">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="handlePageChange($event)"></pagination-controls>
+      </div>
+      <div class="modal fade" id="addNotice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add New Notice</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #addForm="ngForm" (ngSubmit)="onAddNotice(addForm)">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input type="text" class="form-control" id="title" ngModel name="title" aria-describedby="emailHelp" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" id="description" ngModel name="description" placeholder="Description" required>
+                </div>
+                <div class="modal-footer">
+                  <button id="bt-close-form" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="editNotice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Notice</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #editForm="ngForm">
+                <div class="form-group">
+                  <input type="hidden" ngModel="{{editNotice?.id}}" name="id" class="form-control" id="id" aria-describedby="idHelp">
+                  <input type="hidden" ngModel="{{editNotice?.publishDate}}" name="publishDate" class="form-control" id="publishDate" aria-describedby="idHelp">
+                  <label for="title">Title</label>
+                  <input type="text" class="form-control" id="title" ngModel="{{editNotice?.title}}" name="title" aria-describedby="emailHelp" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" id="description" ngModel="{{editNotice?.description}}" name="description" placeholder="Description" required>
+                </div>
+                <div class="modal-footer">
+                  <button id="bt-close-form" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button (click)="onUpdateNotice(editForm.value)" type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="deleteNotice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete Notice</h5>
+              <button id="bt-close-form" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete the {{deleteNotice?.title}} Notice?</p>
+              <div class="modal-footer">
+                <button id="bt-close-form" type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" (click)="onDeleteNotice(deleteNotice?.id)" class="btn btn-danger">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="detailsNotice" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Notice Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h5><strong>Notice Title:</strong></h5>
+              <small>{{detailsNotice?.title}}</small><br>
+              <hr>
+              <h5><strong>Notice Description:</strong></h5>
+              <small>{{detailsNotice?.description}}</small>
+              <hr>
+              <h5><strong>Notice Publish Date:</strong></h5>
+              <small>{{detailsNotice?.publishDate}}</small>
+              <hr>
+              <h5><strong>Notice View Date:</strong></h5>
+              <small>{{detailsNotice?.viewDate}}</small>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
