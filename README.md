@@ -1,14 +1,12 @@
-<h1>DESAFIO MURAL DE AVISOS CERS</h1>
+# DESAFIO MURAL DE AVISOS CERS
 
 Simples CRUD (create, read, update, delete) de avisos escrito em Angular e Spring Boot
 
-<h2>Especificações do desafio</h2>
-
-<h3>Objetivo</h3>
+## Objetivo
 
 Codificar um sistema que deverá criar um CRUD (create, read, update, delete) de avisos.
 
-<h3>Sistema</h3>
+## Sistema
 
 Na listagem, os avisos devem vir paginados. Deve-se mostrar apenas o titulo do aviso e ao clicar mostrar as outras informações do aviso e marcar o mesmo como visualizado.
 
@@ -20,7 +18,7 @@ descrição<br>
 data de publicação<br>
 data de visualização<br>
 
-<h3>Tecnologias</h3>
+## Tecnologias
 
 Será utilizado Angular e Spring Boot para concluir este desafio, sendo assim, será necessário criar 2 projetos.
 
@@ -32,3 +30,17 @@ O projeto em Angular será responsável por criar toda a parte visual e serviço
 Versões das tecnologias à sua escolha.<br>
 Não será avaliado layout e sim funcionalidade, porém é importante manter o mínimo apresentável para seguir o fluxo do CRUD.<br>
 Não precisa se preocupar com autenticação
+
+## Execução dos Projetos
+
+Backend:
+- Criar o Banco de dados com o nome `noticeboard`. 
+- Alterar as informações de acesso ( Login e Senha ) do MYSQL, no arquivo `application.properties` dentro da pasta do projeto. 
+- Para rodar o projeto, execute  o comando `./mvnw spring-boot:run`.
+
+Frontend:
+- Acessar a pasta `noticeboard-frontend`.
+- Rodar o comando `npm install` para instalar os respectivos pacotes do projeto. 
+- Após isso, rodar o comando `ng serve`, dentro da pasta, para executar a aplicação. Caso não tenha o Angular CLI instalado, use o comando `npm start`.
+
+OBS: Rodar primeiro o Backend Spring, em seguida o Frontend Angular, necessariamente nessa ordem.
