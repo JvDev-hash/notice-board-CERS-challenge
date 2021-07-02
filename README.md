@@ -1,14 +1,12 @@
-<h1>DESAFIO MURAL DE AVISOS CERS</h1>
+# DESAFIO MURAL DE AVISOS CERS
 
 Simples CRUD (create, read, update, delete) de avisos escrito em Angular e Spring Boot
 
-<h2>Especificações do desafio</h2>
-
-<h3>Objetivo</h3>
+## Objetivo
 
 Codificar um sistema que deverá criar um CRUD (create, read, update, delete) de avisos.
 
-<h3>Sistema</h3>
+## Sistema
 
 Na listagem, os avisos devem vir paginados. Deve-se mostrar apenas o titulo do aviso e ao clicar mostrar as outras informações do aviso e marcar o mesmo como visualizado.
 
@@ -20,7 +18,7 @@ descrição<br>
 data de publicação<br>
 data de visualização<br>
 
-<h3>Tecnologias</h3>
+## Tecnologias
 
 Será utilizado Angular e Spring Boot para concluir este desafio, sendo assim, será necessário criar 2 projetos.
 
