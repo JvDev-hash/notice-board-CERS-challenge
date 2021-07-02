@@ -57,6 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   public onUpdateNotice(notice: Notice): void{
+    document.getElementById('bt2-close-form')?.click();
     this.noticeService.updateNotice(notice).subscribe(
       (response: Notice) => {
         console.log(response);
@@ -83,11 +84,11 @@ export class AppComponent implements OnInit {
   }
 
   public onDeleteNotice(noticeId: any): void{
+    document.getElementById('bt3-close-form')?.click();
     this.noticeService.deleteNotice(noticeId).subscribe(
       (response: void) => {
         console.log(response);
         this.getNotices();
-        document.getElementById('bt-close-form')?.click();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

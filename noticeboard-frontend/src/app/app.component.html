@@ -101,8 +101,9 @@
               <form #editForm="ngForm">
                 <div class="form-group">
                   <input type="hidden" ngModel="{{editNotice?.id}}" name="id" class="form-control" id="id" aria-describedby="idHelp">
-                  <input type="hidden" ngModel="{{editNotice?.publishDate}}" name="publishDate" class="form-control" id="publishDate" aria-describedby="idHelp">[
+                  <input type="hidden" ngModel="{{editNotice?.publishDate}}" name="publishDate" class="form-control" id="publishDate" aria-describedby="idHelp">
                   <input type="hidden" ngModel="{{editNotice?.viewFlag}}" name="viewFlag" class="form-control" id="viewFlag" aria-describedby="idHelp">
+                  <input type="hidden" ngModel="{{editNotice?.viewDate}}" name="viewDate" class="form-control" id="viewDate" aria-describedby="idHelp">
                   <label for="title">Title</label>
                   <input type="text" class="form-control" id="title" ngModel="{{editNotice?.title}}" name="title" aria-describedby="emailHelp" placeholder="Title" required>
                 </div>
@@ -111,8 +112,8 @@
                   <input type="text" class="form-control" id="description" ngModel="{{editNotice?.description}}" name="description" placeholder="Description" required>
                 </div>
                 <div class="modal-footer">
-                  <button id="bt-close-form" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button (click)="onUpdateNotice(editForm.value)" type="submit" class="btn btn-primary">Save changes</button>
+                  <button id="bt2-close-form" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button [disabled]="editForm.invalid" (click)="onUpdateNotice(editForm.value)" type="submit" class="btn btn-primary">Save changes</button>
                 </div>
               </form>
             </div>
@@ -131,7 +132,7 @@
             <div class="modal-body">
               <p>Are you sure you want to delete the {{deleteNotice?.title}} Notice?</p>
               <div class="modal-footer">
-                <button id="bt-close-form" type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button id="bt3-close-form" type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 <button type="button" (click)="onDeleteNotice(deleteNotice?.id)" class="btn btn-danger">Yes</button>
               </div>
             </div>
