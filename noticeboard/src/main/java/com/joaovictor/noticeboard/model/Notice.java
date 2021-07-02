@@ -26,8 +26,11 @@ public class Notice implements Serializable{
     private Date publishDate;
 
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date viewDate;
+
+    @Column(nullable = false)
+    private String viewFlag;
 
 
     public Notice(){
@@ -82,6 +85,15 @@ public class Notice implements Serializable{
     public void setViewDate(Date viewDate) {
         this.viewDate = viewDate;
     }
+
+    public String getViewFlag() {
+        return this.viewFlag;
+    }
+
+    public void setViewFlag(String viewFlag) {
+        this.viewFlag = viewFlag;
+    }
+
 
     @Override
     public String toString() {

@@ -21,7 +21,7 @@ public class NoticeService {
 
     public Notice addNotice(Notice notice){
         notice.setPublishDate(new Date());
-        notice.setViewDate(new Date());
+        notice.setViewFlag("Not Viewed Yet");
         return noticerepo.save(notice);
     }
 
@@ -30,6 +30,13 @@ public class NoticeService {
     }
 
     public Notice updateNotice(Notice notice){
+        //notice.setViewDate(new Date());
+        return noticerepo.save(notice);
+    }
+
+    public Notice viewNotice(Notice notice){
+        notice.setViewDate(new Date());
+        notice.setViewFlag("Viewed");
         return noticerepo.save(notice);
     }
 

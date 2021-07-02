@@ -57,15 +57,21 @@ public class NoticeResource {
 
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Notice> updateNoticeById(@PathVariable("id") Long id, @RequestBody Notice newNotice){
+    @PutMapping("/update")
+    public ResponseEntity<Notice> updateNotice(@RequestBody Notice newNotice){
 
-        Notice notice = noticeService.findNoticeById(id);
-        notice.setTitle(newNotice.getTitle());
-        notice.setDescription(newNotice.getDescription());
-        notice.setViewDate(new Date());
+        Notice updNotice = noticeService.updateNotice(newNotice);
+        //updNotice.setViewDate(new Date());
+        return new ResponseEntity<>(updNotice, HttpStatus.OK);
 
-        Notice updNotice = noticeRepo.save(notice);
+    }
+
+    @PutMapping("/view")
+    public ResponseEntity<Notice> viewNotice(@RequestBody Notice newNotice){
+
+        Notice updNotice = noticeService.viewNotice(newNotice);
+        updNotice.setViewFlag("Viewed");
+        updNotice.setViewDate(new Date());
         return new ResponseEntity<>(updNotice, HttpStatus.OK);
 
     }
