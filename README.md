@@ -32,3 +32,17 @@ O projeto em Angular será responsável por criar toda a parte visual e serviço
 Versões das tecnologias à sua escolha.<br>
 Não será avaliado layout e sim funcionalidade, porém é importante manter o mínimo apresentável para seguir o fluxo do CRUD.<br>
 Não precisa se preocupar com autenticação
+
+## Execução dos Projetos
+
+Backend:
+- Criar o Banco de dados com o nome `noticeboard`. 
+- Alterar as informações de acesso ( Login e Senha ) do MYSQL, no arquivo `application.properties` dentro da pasta do projeto. 
+- Para rodar o projeto, execute  o comando `./mvnw spring-boot:run`.
+
+Frontend:
+- Acessar a pasta `noticeboard-frontend`.
+- Rodar o comando `npm install` para instalar os respectivos pacotes do projeto. 
+- Após isso, rodar o comando `ng serve`, dentro da pasta, para executar a aplicação.
+
+OBS: Rodar primeiro o Backend Spring, em seguida o Frontend Angular, necessariamente nessa ordem.
