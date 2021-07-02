@@ -41,6 +41,6 @@ Backend:
 Frontend:
 - Acessar a pasta `noticeboard-frontend`.
 - Rodar o comando `npm install` para instalar os respectivos pacotes do projeto. 
-- Após isso, rodar o comando `ng serve`, dentro da pasta, para executar a aplicação.
+- Após isso, rodar o comando `ng serve`, dentro da pasta, para executar a aplicação. Caso não tenha o Angular CLI instalado, use o comando `npm start`.
 
 OBS: Rodar primeiro o Backend Spring, em seguida o Frontend Angular, necessariamente nessa ordem.
