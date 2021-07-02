@@ -156,10 +156,10 @@
               <small>{{detailsNotice?.description}}</small>
               <hr>
               <h5><strong>Notice Publish Date:</strong></h5>
-              <small>{{detailsNotice?.publishDate}}</small>
+              <small>{{detailsNotice?.publishDate | date: 'short'}}</small>
               <hr>
               <h5><strong>Notice View Date:</strong></h5>
-              <small>{{detailsNotice?.viewDate}}</small>
+              <small>{{detailsNotice?.viewDate | date:'short'}}</small>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
