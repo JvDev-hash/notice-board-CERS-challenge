@@ -101,7 +101,8 @@
               <form #editForm="ngForm">
                 <div class="form-group">
                   <input type="hidden" ngModel="{{editNotice?.id}}" name="id" class="form-control" id="id" aria-describedby="idHelp">
-                  <input type="hidden" ngModel="{{editNotice?.publishDate}}" name="publishDate" class="form-control" id="publishDate" aria-describedby="idHelp">
+                  <input type="hidden" ngModel="{{editNotice?.publishDate}}" name="publishDate" class="form-control" id="publishDate" aria-describedby="idHelp">[
+                  <input type="hidden" ngModel="{{editNotice?.viewFlag}}" name="viewFlag" class="form-control" id="viewFlag" aria-describedby="idHelp">
                   <label for="title">Title</label>
                   <input type="text" class="form-control" id="title" ngModel="{{editNotice?.title}}" name="title" aria-describedby="emailHelp" placeholder="Title" required>
                 </div>
